@@ -1,4 +1,5 @@
-import MetaTrader5 as mt5
+# import MetaTrader5 as mt5
+import PythonMetaTrader5 as mt5
 import pandas as pd
 import pandas_ta as ta
 import streamlit as st
@@ -73,9 +74,9 @@ cfo = indicators.cfo_signal(df)
 cksp = indicators.cksp_signal(df)
 cmf = indicators.cmf_signal(df)
 dm = indicators.dm_signal(df)
+eri = indicators.eri_signal(df)
 
-
-lst_indi = ['BOP', 'CCI', 'CFO', 'CKSP', 'CMF', 'DM']
+lst_indi = ['BOP', 'CCI', 'CFO', 'CKSP', 'CMF', 'DM', 'ERI']
 select_indicator = st.selectbox('Choose your indicator Signal 🎰', lst_indi)
 
 
@@ -145,8 +146,21 @@ if select_indicator == 'DM':
     st.plotly_chart(plt_dm)
 
 
-
-
+if select_indicator =='ERI':
+    eri[-1:]
+    ind_eri = ta.eri(df['high'], df['low'], df['close'])
+    plt_eri = go.Figure()
+    plt_eri.add_trace(go.Scatter(x=df.index,
+                         y=ind_eri['BULLP_13'],
+                         opacity=0.7,
+                         line=dict(color='blue', width=2),
+                         name='BULLP_13'))
+    plt_eri.add_trace(go.Scatter(x=df.index,
+                            y=ind_eri['BEARP_13'],
+                            opacity=0.7,
+                            line=dict(color='orange', width=2),
+                            name='BEARP_13'))
+    st.plotly_chart(plt_eri)
 
 # create orders
 qty = st.slider('select the Lot percent', min_value=0.0, max_value=1.0, step=0.1)
@@ -223,3 +237,7 @@ for article in all_articles:
   st.markdown(f"{article['description']}", unsafe_allow_html=True)
   st.markdown(f"Published on: {article['published_at']}")
   st.markdown(f"Link: [More Info]({article['link']})")
+  
+  
+ind_eri = ta.eri(df['high'], df['low'], df['close'])
+st.write(ind_eri)

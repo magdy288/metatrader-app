@@ -1,5 +1,9 @@
 import streamlit as st
-import MetaTrader5 as mt5
+# import MetaTrader5 as mt5
+# import pymt5 
+import pyautogui
+import PythonMetaTrader5 as mt5
+
 import pandas as pd
 import pandas_ta as ta
 import time
@@ -8,6 +12,9 @@ import plotly.graph_objects as go
 import numpy as np
 
 import indicators
+
+# mt5=pymt5.PyMT5()
+
 
 st.set_page_config('Bot', page_icon='🤖')
 

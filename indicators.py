@@ -1,4 +1,5 @@
-import MetaTrader5 as mt5
+# import MetaTrader5 as mt5
+import PythonMetaTrader5 as mt5
 import pandas as pd
 import pandas_ta as ta
 import streamlit as st
@@ -185,13 +186,14 @@ def eri_signal(df):
     
     
     for i in range(len(df)):
-        prev_bull = eri['BULLP_13'].iloc[ i - 1]
-        prev_bear = eri['BEARP_13'].iloc[ i - 1]
+        # prev_bull = eri['BULLP_13'].iloc[ i - 1]
+        # prev_bear = eri['BEARP_13'].iloc[ i - 1]
         
-        if eri['BULLP_13'][i] > prev_bull:
+        if eri['BULLP_13'][i] > eri['BEARP_13'][i] and (eri['BULLP_13'][i] and eri['BEARP_13'][i]) > 0:
             signal.append('buy')
-        elif eri['BEARP_13'][i] < prev_bear:
+        elif eri['BEARP_13'][i] > eri['BULLP_13'][i] and (eri['BULLP_13'][i] and eri['BEARP_13'][i]) < 0:
             signal.append('sell')
         else:
             signal.append(0)
     return signal[-1:]
+
