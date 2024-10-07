@@ -1,5 +1,5 @@
 # import MetaTrader5 as mt5
-import PythonMetaTrader5 as mt5
+import mt5
 import pandas as pd
 
 mt5.initialize()
