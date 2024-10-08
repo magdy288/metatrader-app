@@ -2,6 +2,6 @@ feedparser==6.0.11
 mt5
 numpy
 pandas
-pandas_ta==0.3.14b0
 plotly
 streamlit
+finta
