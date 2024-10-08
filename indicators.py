@@ -6,7 +6,9 @@ import pandas as pd
 import finta as ta
 import streamlit as st
 
+import mt5_server as mt
 
+mt5 = mt.MetaTrader5
 
 
 @st.cache_data
