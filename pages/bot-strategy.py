@@ -1,6 +1,9 @@
+import pyomt5.api
 import streamlit as st
 # import MetaTrader5 as mt5
-import PythonMetaTrader5 as pmt
+# import PythonMetaTrader5 as pmt
+# import pymt5 
+import pyomt5
 import mt5
 
 import pandas as pd
@@ -12,8 +15,7 @@ import numpy as np
 
 import indicators
 
-# mt5=pymt5.PyMT5()
-
+# mt=pymt5.PyMT5()
 
 st.set_page_config('Bot', page_icon='🤖')
 
@@ -112,13 +114,13 @@ symbol = st.selectbox('Choose your symbol 💲', symbol_list)
                 
     
 select_tf = {
-    '1d': pmt.TIMEFRAME_D1,
-    '4h': pmt.TIMEFRAME_H4,
-    '1h': pmt.TIMEFRAME_H1,
-    '30m': pmt.TIMEFRAME_M30,
-    '15m': pmt.TIMEFRAME_M15,
-    '5m': pmt.TIMEFRAME_M5,
-    '1m': pmt.TIMEFRAME_M1
+    '1d': pyomt5.api.MT5TimeFrame.Daily,
+    # '4h': pyomt5.api.MT5TimeFrame.,
+    '1h': pyomt5.api.MT5TimeFrame.Hourly,
+    '30m': pyomt5.api.MT5TimeFrame.M30,
+    '15m': pyomt5.api.MT5TimeFrame.M15,
+    '5m': pyomt5.api.MT5TimeFrame.M5,
+    '1m': pyomt5.api.MT5TimeFrame.M1
 }
 selected_tf = st.selectbox('select the TimeFrame⌚', select_tf.keys())
 tf = select_tf[selected_tf]
