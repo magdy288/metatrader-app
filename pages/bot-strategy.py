@@ -25,7 +25,7 @@ mtt.initialize()
 
 def get_data(symbol, timeframe, count):
                 # get 10 GBPUSD D1 bars from the current day
-                bars = mtt.copy_rates_from(symbol, timeframe, datetime(2024, 8, 1), count)
+                bars = mtt.copy_rates_from(symbol, timeframe, datetime.datetime(2024, 8, 1), count)
 
                 
                 # create DataFrame out of the obtained data
