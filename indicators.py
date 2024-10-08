@@ -15,7 +15,7 @@ mt5 = mt.MetaTrader5
 @st.cache_data
 def get_data(symbol, timeframe, count):
     # get 10 GBPUSD D1 bars from the current day
-    bars = mtt.copy_rates_range(symbol, timeframe, count)
+    bars = mt5.copy_rates_from_pos(symbol, timeframe, count)
 
     
     # create DataFrame out of the obtained data
