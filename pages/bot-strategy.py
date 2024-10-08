@@ -11,7 +11,7 @@ import pandas as pd
 import time
 import plotly.subplots as sp
 import plotly.graph_objects as go
-from datetime import datetime
+import datetime
 import indicators
 
 # mt=pymt5.PyMT5()

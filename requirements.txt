@@ -5,4 +5,3 @@ mt5_server==0.0.5
 pandas==2.2.3
 plotly==5.22.0
 streamlit==1.32.0
-Datetime

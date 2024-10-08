@@ -7,7 +7,7 @@ import pandas as pd
 # import pandas_ta as ta
 import finta as ta
 import streamlit as st
-from datetime import datetime
+import datetime
 
 mt5 = mt.MetaTrader5
 
