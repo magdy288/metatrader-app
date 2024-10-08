@@ -11,8 +11,7 @@ import pandas as pd
 import time
 import plotly.subplots as sp
 import plotly.graph_objects as go
-import numpy as np
-
+from datetime import datetime
 import indicators
 
 # mt=pymt5.PyMT5()
@@ -26,7 +25,7 @@ mtt.initialize()
 
 def get_data(symbol, timeframe, count):
                 # get 10 GBPUSD D1 bars from the current day
-                bars = mt5.copy_rates_from_pos(symbol, timeframe, 0, count)
+                bars = mtt.copy_rates_from(symbol, timeframe, datetime(2024, 8, 1), count)
 
                 
                 # create DataFrame out of the obtained data
@@ -94,11 +93,11 @@ def create_order(symbol, qty, order_type, price, sl, tp):
                         'comment' : 'python open position'
                     }
                     
-                    result = mt5.order_send(request)
+                    result = mtt.order_send(request)
                     return result
                 
 def posi(symbol):
-                    position = mt5.positions_get(symbol=symbol)
+                    position = mtt.positions_get(symbol=symbol)
                     
                     signal= []
                     if len(position) > 3:
@@ -128,7 +127,7 @@ select_tf = {
     # '4h': pyomt5.api.MT5TimeFrame.,
     '1h': h1,
     '30m': m30,
-    '15m': mt5,
+    '15m': m15,
     '5m': m5,
     '1m': m1
 }
@@ -203,8 +202,8 @@ if __name__ == '__main__':
             buy_order = mt5.ORDER_TYPE_BUY
             sell_order = mt5.ORDER_TYPE_SELL
 
-            buy_price = mt5.symbol_info_tick(symbol).ask
-            sell_price = mt5.symbol_info_tick(symbol).bid
+            buy_price = mtt.symbol_info_tick(symbol).ask
+            sell_price = mtt.symbol_info_tick(symbol).bid
             sl_pct = 0.0003
             tp_pct = 0.0004
             buy_sl = buy_price * (1-sl_pct)

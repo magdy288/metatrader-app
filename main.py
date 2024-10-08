@@ -128,8 +128,8 @@ buy_order = mt5.ORDER_TYPE_BUY
 sell_order = mt5.ORDER_TYPE_SELL
 
 
-buy_price = mt5.symbol_info_tick(symbol).ask
-sell_price = mt5.symbol_info_tick(symbol).bid
+buy_price = mtt.symbol_info_tick(symbol).ask
+sell_price = mtt.symbol_info_tick(symbol).bid
 
 sl_pct = 0.0003
 tp_pct = 0.0004
