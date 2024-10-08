@@ -103,6 +103,13 @@ if select_indicator == 'FISH':
     plt_cfo.update_layout(title='Fisher Transform was presented (FISH)', yaxis_title='FISH Values')
     st.plotly_chart(plt_cfo)
     
+if select_indicator == 'CMO':
+    fish[-1:]
+    ind_fish = ta.TA.CMO(df, period=13)
+    plt_cfo = go.Figure(data=[go.Scatter(x=df.index, y=ind_fish)])
+    plt_cfo.update_layout(title='Chande Momentum Oscillator (CMO)', yaxis_title='CMO Values')
+    st.plotly_chart(plt_cfo)
+
 
 # create orders
 qty = st.slider('select the Lot percent', min_value=0.0, max_value=1.0, step=0.1)
@@ -181,5 +188,3 @@ for article in all_articles:
   st.markdown(f"Link: [More Info]({article['link']})")
   
   
-ind_eri = ta.eri(df['high'], df['low'], df['close'])
-st.write(ind_eri)

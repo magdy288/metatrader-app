@@ -4,7 +4,7 @@ import streamlit as st
 import mt5
 
 import pandas as pd
-import pandas_ta as ta
+# import pandas_ta as ta
 import time
 import plotly.subplots as sp
 import plotly.graph_objects as go
@@ -34,24 +34,7 @@ def get_data(symbol, timeframe, count):
                 df['time']=pd.to_datetime(df['time'], unit='s')
 
                 return df            
-
-            
-
-
-def dm_signal(df):
-                dm = ta.dm(df['high'], df['low'])
-                signal = []
-                
-                for i in range(len(df)):
-                    if dm['DMP_14'].iloc[i] > dm['DMN_14'].iloc[i]:
-                        signal.append('buy')
-                    elif dm['DMP_14'].iloc[i] < dm['DMN_14'].iloc[i]:
-                        signal.append('sell')
-                    else:
-                        signal.append(0)
-                return pd.Series(signal[-1:])            
-
-            
+  
             
             
             
