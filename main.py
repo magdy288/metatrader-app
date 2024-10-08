@@ -54,7 +54,7 @@ timeframe = select_tf[selected_tf]
 
 count = 100
 
-df = indicators.get_data(symbol, timeframe, count)
+df = indicators.get_data(symbol, timeframe)
 
 st.dataframe(df,  use_container_width=True)
 
