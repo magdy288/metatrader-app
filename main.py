@@ -31,7 +31,7 @@ symbol_list = ['EURUSD', 'USDJPY', 'USDCNH', 'USDCHF', 'USDCAD', 'GBPUSD']
 symbol = st.selectbox('Choose your symbol 💲', symbol_list)
 
 select_tf = {
-    '1d': mt5.TIMEFRAME_D1,
+    # '1d': mt5.TIMEFRAME_D1,
     '4h': mt5.TIMEFRAME_H4,
     '1h': mt5.TIMEFRAME_H1,
     '30m': mt5.TIMEFRAME_M30,
