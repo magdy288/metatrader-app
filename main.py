@@ -13,6 +13,7 @@ import feedparser
 
 import indicators
 import orders
+import mt5_server as mt
 
 
 st.set_page_config(page_title='Play with MetaTrader',
@@ -31,12 +32,13 @@ symbol_list = ['EURUSD', 'USDJPY', 'USDCNH', 'USDCHF', 'USDCAD', 'GBPUSD']
 symbol = st.selectbox('Choose your symbol 💲', symbol_list)
 
 
-d1 = mt5.TIMEFRAME_D1
-h1 = mt5.TIMEFRAME_H1
-m30 = mt5.TIMEFRAME_M30
-m15 = mt5.TIMEFRAME_M15
-m5 = mt5.TIMEFRAME_M5
-m1 = mt5.TIMEFRAME_M1
+d1 = mt.MetaTrader5.TIMEFRAME_D1
+h1 = mt.MetaTrader5.TIMEFRAME_H1
+m30 = mt.MetaTrader5.TIMEFRAME_M30
+m15 = mt.MetaTrader5.TIMEFRAME_M15
+m5 = mt.MetaTrader5.TIMEFRAME_M5
+m1 = mt.MetaTrader5.TIMEFRAME_M1
+
 
 select_tf = {
     '1d': d1,
