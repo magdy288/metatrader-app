@@ -1,6 +1,6 @@
 # import MetaTrader5 as mt5
 # import PythonMetaTrader5 as pmt
-# import mt5
+import mt5 as mtt
 import pandas as pd
 # import pandas_ta as ta
 import finta as ta
@@ -23,7 +23,7 @@ st.title(' Play with MetaTrader 💰')
 
 mt5 = mt.MetaTrader5
 
-mt5.initialize()
+mtt.initialize()
 
 
 
