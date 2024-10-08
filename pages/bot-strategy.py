@@ -1,9 +1,9 @@
-import pyomt5.api
 import streamlit as st
 # import MetaTrader5 as mt5
 # import PythonMetaTrader5 as pmt
 # import pymt5 
-import pyomt5
+# import pyomt5
+import mt5_server as mt
 import mt5
 
 import pandas as pd
@@ -16,7 +16,7 @@ import numpy as np
 import indicators
 
 # mt=pymt5.PyMT5()
-
+mt.MetaTrader5.TIMEFRAME_D1
 st.set_page_config('Bot', page_icon='🤖')
 
 st.title('Welcome to MetaTrader5 Trading-Bot 🤑')
@@ -111,16 +111,26 @@ def posi(symbol):
                 
 symbol_list = ['EURUSD', 'USDJPY', 'USDCNH', 'USDCHF', 'USDCAD', 'GBPUSD']
 symbol = st.selectbox('Choose your symbol 💲', symbol_list)               
-                
+ 
+ 
+d1 = mt.MetaTrader5.TIMEFRAME_D1
+h1 = mt.MetaTrader5.TIMEFRAME_H1
+m30 = mt.MetaTrader5.TIMEFRAME_M30
+m15 = mt.MetaTrader5.TIMEFRAME_M15
+m5 = mt.MetaTrader5.TIMEFRAME_M5
+m1 = mt.MetaTrader5.TIMEFRAME_M1
+
+
+
     
 select_tf = {
-    '1d': pyomt5.api.MT5TimeFrame.Daily,
+    '1d': d1,
     # '4h': pyomt5.api.MT5TimeFrame.,
-    '1h': pyomt5.api.MT5TimeFrame.Hourly,
-    '30m': pyomt5.api.MT5TimeFrame.M30,
-    '15m': pyomt5.api.MT5TimeFrame.M15,
-    '5m': pyomt5.api.MT5TimeFrame.M5,
-    '1m': pyomt5.api.MT5TimeFrame.M1
+    '1h': h1,
+    '30m': m30,
+    '15m': mt5,
+    '5m': m5,
+    '1m': m1
 }
 selected_tf = st.selectbox('select the TimeFrame⌚', select_tf.keys())
 tf = select_tf[selected_tf]

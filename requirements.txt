@@ -6,3 +6,4 @@ plotly
 streamlit
 finta
 PythonMetaTrader5
+mt5-server
