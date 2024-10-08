@@ -1,5 +1,5 @@
 # import MetaTrader5 as mt5
-import PythonMetaTrader5 as pmt
+# import PythonMetaTrader5 as pmt
 import mt5
 import pandas as pd
 # import pandas_ta as ta
@@ -30,15 +30,22 @@ mt5.initialize()
 symbol_list = ['EURUSD', 'USDJPY', 'USDCNH', 'USDCHF', 'USDCAD', 'GBPUSD']
 symbol = st.selectbox('Choose your symbol 💲', symbol_list)
 
-mt5.TIMEFRAME_D1
+
+d1 = mt5.TIMEFRAME_D1
+h1 = mt5.TIMEFRAME_H1
+m30 = mt5.TIMEFRAME_M30
+m15 = mt5.TIMEFRAME_M15
+m5 = mt5.TIMEFRAME_M5
+m1 = mt5.TIMEFRAME_M1
+
 select_tf = {
-    '1d': pmt.TIMEFRAME_D1,
-    '4h': pmt.TIMEFRAME_H4,
-    '1h': pmt.TIMEFRAME_H1,
-    '30m': pmt.TIMEFRAME_M30,
-    '15m': pmt.TIMEFRAME_M15,
-    '5m': pmt.TIMEFRAME_M5,
-    '1m': pmt.TIMEFRAME_M1
+    '1d': d1,
+    # '4h': pyomt5.api.MT5TimeFrame.,
+    '1h': h1,
+    '30m': m30,
+    '15m': mt5,
+    '5m': m5,
+    '1m': m1
 }
 selected_tf = st.selectbox('select the TimeFrame⌚', select_tf.keys())
 timeframe = select_tf[selected_tf]
