@@ -16,7 +16,6 @@ import numpy as np
 import indicators
 
 # mt=pymt5.PyMT5()
-mt.MetaTrader5.TIMEFRAME_D1
 st.set_page_config('Bot', page_icon='🤖')
 
 st.title('Welcome to MetaTrader5 Trading-Bot 🤑')
