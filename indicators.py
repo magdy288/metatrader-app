@@ -7,7 +7,6 @@ import pandas as pd
 # import pandas_ta as ta
 import finta as ta
 import streamlit as st
-import datetime
 
 mt5 = mt.MetaTrader5
 
@@ -15,7 +14,7 @@ mt5 = mt.MetaTrader5
 @st.cache_data
 def get_data(symbol, timeframe, count):
     # get 10 GBPUSD D1 bars from the current day
-    bars = mt5.copy_rates_from_pos(symbol, timeframe, count)
+    bars = mtt.copy_rates_from(symbol, timeframe, count)
 
     
     # create DataFrame out of the obtained data
