@@ -150,20 +150,14 @@ df = get_data(symbol,tf,count)
 
 ## Indicators Part
 bop = indicators.bop_signal(df)
-brar = indicators.brar_signal(df)
 cci = indicators.cci_signal(df)
-cfo = indicators.cfo_signal(df)
-cksp = indicators.cksp_signal(df)
-cmf = indicators.cmf_signal(df)
-dm = indicators.dm_signal(df)
-
+fish = indicators.fish_signal(df)
+cmo = indicators.cmo_signal(df)
 
 lst_indi = {'BOP':bop,
             'CCI':cci,
-            'CFO':cfo,
-            'CKSP':cksp,
-            'CMF':cmf,
-            'DM':dm}
+            'FISH':fish,
+            'CMO':cmo}
 select_indicator = st.selectbox('Choose your indicator Signal 🎰', lst_indi.keys())
 
 signal = lst_indi[select_indicator]

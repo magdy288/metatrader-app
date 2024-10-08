@@ -2,7 +2,8 @@
 # import PythonMetaTrader5 as mt5
 import mt5
 import pandas as pd
-import pandas_ta as ta
+# import pandas_ta as ta
+import finta as ta
 import streamlit as st
 
 import plotly.subplots as sp
@@ -69,15 +70,11 @@ st.plotly_chart(plt_df)
 
 ## Indicators Part
 bop = indicators.bop_signal(df)
-brar = indicators.brar_signal(df)
 cci = indicators.cci_signal(df)
-cfo = indicators.cfo_signal(df)
-cksp = indicators.cksp_signal(df)
-cmf = indicators.cmf_signal(df)
-dm = indicators.dm_signal(df)
-eri = indicators.eri_signal(df)
+fish = indicators.fish_signal(df)
+cmo = indicators.cmo_signal(df)
 
-lst_indi = ['BOP', 'CCI', 'CFO', 'CKSP', 'CMF', 'DM', 'ERI']
+lst_indi = ['BOP', 'CCI', 'FISH', 'CMO']
 select_indicator = st.selectbox('Choose your indicator Signal 🎰', lst_indi)
 
 
@@ -85,7 +82,7 @@ select_indicator = st.selectbox('Choose your indicator Signal 🎰', lst_indi)
 if select_indicator == 'BOP':
     bop[-1:]
     # Plot the BOP indicator
-    ind_bop = ta.bop(df['open'], df['high'], df['low'], df['close'])
+    ind_bop = ta.TA.BOP(df)
     plot_bop = go.Figure(data=[go.Scatter(x=df.index, y=ind_bop)])
     plot_bop.update_layout(title='Balance of Power (BOP) Indicator', yaxis_title='BOP Value')
     st.plotly_chart(plot_bop)
@@ -93,75 +90,19 @@ if select_indicator == 'BOP':
 
 if select_indicator == 'CCI':
     cci[-1:]
-    cci_indi = ta.cci(df['high'], df['low'], df['close'], length=13)
+    cci_indi = ta.TA.CCI(df, period=13)
     plt_cci = go.Figure(data=[go.Scatter(x=df.index, y=cci_indi)])
     plt_cci.update_layout(title='Commodity Channel Index (CCI)', yaxis_title='CCI Values')
     st.plotly_chart(plt_cci)
 
 
-if select_indicator == 'CFO':
-    cfo[-1:]
-    ind_cfo = ta.cfo(df['close'], length=14)
-    plt_cfo = go.Figure(data=[go.Scatter(x=df.index, y=ind_cfo)])
-    plt_cfo.update_layout(title='Chande Forcast Oscillator (CFO)', yaxis_title='CFO Values')
+if select_indicator == 'FISH':
+    fish[-1:]
+    ind_fish = ta.TA.FISH(df, period=13)
+    plt_cfo = go.Figure(data=[go.Scatter(x=df.index, y=ind_fish)])
+    plt_cfo.update_layout(title='Fisher Transform was presented (FISH)', yaxis_title='FISH Values')
     st.plotly_chart(plt_cfo)
     
-if select_indicator == 'CKSP':
-    cksp[-1:]
-    ind_cksp = ta.cksp(df['high'], df['low'], df['close'])
-    plt_cksp = go.Figure()
-    plt_cksp.add_trace(go.Scatter(x=df.index,
-                         y=ind_cksp['CKSPl_10_3_20'],
-                         opacity=0.7,
-                         line=dict(color='blue', width=2),
-                         name='CKSPl'))
-    plt_cksp.add_trace(go.Scatter(x=df.index,
-                            y=ind_cksp['CKSPs_10_3_20'],
-                            opacity=0.7,
-                            line=dict(color='orange', width=2),
-                            name='CKSPs'))
-    st.plotly_chart(plt_cksp)
-    
-if select_indicator == 'CMF':
-    st.write(cmf[-1:])
-    ind_cmf = ta.cmf(df['high'], df['low'], df['close'], df['tick_volume'])
-    plt_cmf = go.Figure(data=[go.Scatter(x=df.index, y=ind_cmf)])
-    plt_cmf.update_layout(title='Chaikin Money Flow (CMF)', yaxis_title='CMF Values')
-    st.plotly_chart(plt_cmf)
-
-
-if select_indicator == 'DM':
-    dm[-1:]
-    ind_dm = ta.dm(df['high'], df['low'])
-    plt_dm = go.Figure()
-    plt_dm.add_trace(go.Scatter(x=df.index,
-                         y=ind_dm['DMP_14'],
-                         opacity=0.7,
-                         line=dict(color='blue', width=2),
-                         name='DMP_14'))
-    plt_dm.add_trace(go.Scatter(x=df.index,
-                            y=ind_dm['DMN_14'],
-                            opacity=0.7,
-                            line=dict(color='orange', width=2),
-                            name='DMN_14'))
-    st.plotly_chart(plt_dm)
-
-
-if select_indicator =='ERI':
-    eri[-1:]
-    ind_eri = ta.eri(df['high'], df['low'], df['close'])
-    plt_eri = go.Figure()
-    plt_eri.add_trace(go.Scatter(x=df.index,
-                         y=ind_eri['BULLP_13'],
-                         opacity=0.7,
-                         line=dict(color='blue', width=2),
-                         name='BULLP_13'))
-    plt_eri.add_trace(go.Scatter(x=df.index,
-                            y=ind_eri['BEARP_13'],
-                            opacity=0.7,
-                            line=dict(color='orange', width=2),
-                            name='BEARP_13'))
-    st.plotly_chart(plt_eri)
 
 # create orders
 qty = st.slider('select the Lot percent', min_value=0.0, max_value=1.0, step=0.1)
