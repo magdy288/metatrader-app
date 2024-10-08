@@ -5,3 +5,4 @@ pandas
 plotly
 streamlit
 finta
+PythonMetaTrader5
