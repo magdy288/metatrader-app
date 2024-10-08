@@ -1,6 +1,6 @@
 # import MetaTrader5 as mt5
 # import PythonMetaTrader5 as pmt
-import mt5
+# import mt5
 import pandas as pd
 # import pandas_ta as ta
 import finta as ta
@@ -21,9 +21,9 @@ st.set_page_config(page_title='Play with MetaTrader',
                    layout='centered')
 st.title(' Play with MetaTrader 💰')
 
+mt5 = mt.MetaTrader5
 
 mt5.initialize()
-
 
 
 

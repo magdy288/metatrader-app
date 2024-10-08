@@ -4,7 +4,7 @@ import streamlit as st
 # import pymt5 
 # import pyomt5
 import mt5_server as mt
-import mt5
+# import mt5
 
 import pandas as pd
 # import pandas_ta as ta
@@ -20,6 +20,8 @@ st.set_page_config('Bot', page_icon='🤖')
 
 st.title('Welcome to MetaTrader5 Trading-Bot 🤑')
   
+mt5 = mt.MetaTrader5
+
 mt5.initialize()
 
 
